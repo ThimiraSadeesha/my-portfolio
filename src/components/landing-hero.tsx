@@ -40,8 +40,7 @@ export default function LandingHero() {
                         <FadeUp key="description" duration={0.6} delay={0.2}>
                             <div className="mt-8 max-w-3xl text-base font-semibold text-zinc-900 dark:text-zinc-200 sm:text-base md:text-2xl">
                                 <span className="text-xl text-accent sm:text-3xl">Hi</span>, I&apos;m
-                                <span className="text-accent"> Thimira</span> — I turn ideas
-                                into polished digital experiences, from backend to pixel-perfect UI.
+                                <span className="text-accent"> Thimira</span> I build clean, user focused digital solutions across web and mobile platforms.
                             </div>
                         </FadeUp>
                     </AnimatePresence>

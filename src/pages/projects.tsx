@@ -16,8 +16,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: { projects },
-    // Re-generate page in the background at most once per hour
-    revalidate: 3600,
   };
 };
 
