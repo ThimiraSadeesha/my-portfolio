@@ -1,16 +1,18 @@
 import { createTransport } from 'nodemailer';
 
 export const sendMail = async function (
-    name: string,
-    email: string | 'SELF',
-    subject: string,
-    message: string,
+  name: string,
+  email: string | 'SELF',
+  subject: string,
+  message: string,
 ): Promise<{ status: number; message: string }> {
-  const user ='sadeethimira1234@gmail.com';
-  const pass = '123sadee';
+
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
 
   if (!user || !pass) {
-    return { status: 500, message: 'Internal server error' };
+    console.error('sendMail: GMAIL_USER or GMAIL_APP_PASSWORD env var is not set');
+    return { status: 500, message: 'Mail service is not configured' };
   }
 
   const transporter = createTransport({
@@ -25,12 +27,19 @@ export const sendMail = async function (
     from: user,
     to: user,
     subject: `Portfolio: [${subject}]`,
-    text: `${name}: <${email}>\n${message}`,
+    html: `
+      <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <hr/>
+      <p>${message.replace(/\n/g, '<br/>')}</p>
+    `,
+    replyTo: email === 'SELF' ? user : email,
   };
 
   return new Promise((resolve) => {
     transporter.sendMail(mailOptions, (error) => {
       if (error) {
+        console.error('sendMail error:', error.message);
         resolve({ status: 500, message: 'Failed to send mail' });
       } else {
         resolve({ status: 200, message: 'Mail sent successfully' });

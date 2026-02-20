@@ -5,19 +5,11 @@ import { NextSeo } from "next-seo";
 
 import LandingHero from "@/components/landing-hero";
 import CursorTrailCanvas from "@/components/cursor-trail-canvas";
-import { PROJECT_SHOWCASE } from "@/data/projects";
 import { SKILLS_DATA } from "@/data/skills";
 import { siteMetadata } from "@/data/siteMetaData.mjs";
 
 const SkillsShowcase = dynamic(
   () => import("@/components/skills/skills-showcase"),
-  {
-    ssr: true,
-  },
-);
-
-const ProjectShowcase = dynamic(
-  () => import("@/components/projects/project-showcase"),
   {
     ssr: true,
   },
@@ -34,9 +26,9 @@ export default function Home() {
         openGraph={{
           url: siteMetadata.siteUrl,
           title: "Discover Projects by Thimira Sadeesha - Fullstack Software Engineer",
-            description:
-                "Explore a showcase of projects crafted by Thimira Sadeesha," +
-                "Witness the skills of a Associate Software Engineer (Fullstack) (Mobile and Web) in action, from crafting user-friendly mobile apps to building responsive web interfaces.",
+          description:
+            "Explore a showcase of projects crafted by Thimira Sadeesha," +
+            "Witness the skills of a Associate Software Engineer (Fullstack) (Mobile and Web) in action, from crafting user-friendly mobile apps to building responsive web interfaces.",
           images: [
             {
               url: `${siteMetadata.siteUrl}${siteMetadata.twitterImage}`,
@@ -53,16 +45,15 @@ export default function Home() {
           {
             property: "keywords",
             content:
-              "About Me, Fullstack Software Engineer Android ,Flutter ,NodeJs, Typescript , JavaScript, Professional Journey, Skills, Passion for Web and Mobile Development",
+              "About Me, Fullstack Software Engineer Android, Flutter, NodeJs, Typescript, JavaScript, Professional Journey, Skills, Passion for Web and Mobile Development",
           },
         ]}
       />
-        <Head>
-            <link rel="icon" href="/static/favicon.png" type="image/png" />
-        </Head>
-        <LandingHero/>
-        <SkillsShowcase skills={SKILLS_DATA} />
-      <ProjectShowcase projects={PROJECT_SHOWCASE} />
+      <Head>
+        <link rel="icon" href="/static/favicon.png" type="image/png" />
+      </Head>
+      <LandingHero />
+      <SkillsShowcase skills={SKILLS_DATA} />
     </>
   );
 }
