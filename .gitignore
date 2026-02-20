@@ -1,4 +1,7 @@
 .next
 node_modules
-.env.local
+.env.local.example
 .env.
+.idea
+.husky
+.env.local

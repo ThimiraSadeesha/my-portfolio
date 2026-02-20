@@ -6,6 +6,7 @@ export const sendMail = async function (
   subject: string,
   message: string,
 ): Promise<{ status: number; message: string }> {
+
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
 
